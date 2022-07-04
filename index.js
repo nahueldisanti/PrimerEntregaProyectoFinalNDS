@@ -26,7 +26,6 @@ provincias= [
     { nombre: "Santa Fe", distancia: 500 , valorHotel: 1000 , datoProvincia: "En Santa Fe capital, se encuentra el rio Parana. Tomate un Amargo Obrero en la ribera." },
     { nombre: "Chubut", distancia: 900 , valorHotel: 2500 , datoProvincia: "Si visitas la provincia de Chubut entre los meses de septiembre a diciembre, podras ver ballenas francas australes nadando por las costas de Puerto Madryn."  },
     { nombre: "Rio Negro", distancia: 1000 , valorHotel:3000 , datoProvincia: "Rio Negro, una de las provincias con mas atractivos turisticos de la Patagonica. Algunos destinos imperdibles son: Bariloche, San Martin de los Andes, Villa La Angostura y muchos mas. " },
-    
 ]
 
 //Funciones necesarias para la calculadora
@@ -56,8 +55,15 @@ function destinoPosible (presupuesto, costoTotal) {
     }
 }
 
-function verDato (){
-
+function verDato (provincia){
+    verDato = prompt("Te gustaria conocer mas sobre esta provincia? Pone OK para verlo.");
+    if(verDato === "ok") {
+        alert(provincia['datoProvincia']);
+        console.log(provincia['datoProvincia']);
+    }
+    else {
+        alert("Que tengas buen viaje!")
+    }
 }
 
 function opcionesDestino() {
@@ -91,7 +97,7 @@ function calculadora() {
             console.log(costoViaje);
             destinoPosible(presupuesto, costoViaje);
             console.log(destinoPosible);
-            verDato(); 
+            verDato(destinoSeleccionado); 
             break;
         } else {
             alert("Elige un destino por favor");
