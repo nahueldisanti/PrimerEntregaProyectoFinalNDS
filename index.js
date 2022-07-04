@@ -83,46 +83,20 @@ function calculadora() {
             //destinoSeleccionado = parseInt(destinoSeleccionado);
             
             if (!isNaN(destinoSeleccionado)){
-
-                switch(destinoSeleccionado){
-
-                    case 1:
-                        let costoHotelCordoba= destinoSeleccionado['valorHotel'];
-                        let costoTrasladoCordoba = traslado (destinoSeleccionado['distancia'],valorKilometro);
-                        let costoHospedajeCordoba = hospedaje (dias, costoHotelCordoba );
-                        costoViaje = costoViaje(costoTrasladoCordoba, costoHospedajeCordoba);
-                        destinoPosible(presupuesto, costoViaje);
-                        break;
-
-                    case 2:
-                        let costoHotelSantaFe= 1000;
-                        let costoTrasladoSantaFe = traslado (500,valorKilometro);
-                        let costoHospedajeSantaFe = hospedaje (dias, costoHotelSantaFe );
-                        costoViaje = costoViaje(costoTrasladoSantaFe, costoHospedajeSantaFe);
-                        destinoPosible(presupuesto, costoViaje);
-                        break;
-
-                    case 3:
-                        let costoHotelChubut= 2500;
-                        let costoTrasladoChubut = traslado (900,valorKilometro);
-                        let costoHospedajeChubut = hospedaje (dias, costoHotelChubut );
-                        costoViaje = costoViaje(costoTrasladoChubut, costoHospedajeChubut);
-                        destinoPosible(presupuesto, costoViaje);
-                        break;
-
-                    case 4:
-                        let costoHotelRioNegro= 3000;
-                        let costoTrasladoRioNegro = traslado (1000,valorKilometro);
-                        let costoHospedajeRioNegro = hospedaje (dias, costoHotelRioNegro );
-                        costoViaje(costoTrasladoRioNegro, costoHospedajeRioNegro);
-                        destinoPosible(presupuesto, costoViaje);
-                        break;
-                }
+                let costoHotel= destinoSeleccionado['valorHotel'];
+                let costoTraslado = traslado (destinoSeleccionado['distancia'],valorKilometro);
+                let costoHospedaje = hospedaje (dias, costoHotel);
+                costoViaje = costoViaje(costoTraslado, costoHospedaje);
+                console.log(costoViaje);
+                destinoPosible(presupuesto, costoViaje);
+                console.log(destinoPosible)
+                break;
+                
             }
         } else {
             alert("Elige un destino por favor");
         }
-        destinoSeleccionado = opcionesDestino();
+        destinoSeleccionado = buscadorDestino(opcionesDestino());
     }
 }
 
