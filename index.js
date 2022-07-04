@@ -1,5 +1,36 @@
 let nombre = prompt("Bienvenide a Punto de Observacion, tu calculadora de viajes. Cual es tu nombre?");
 
+
+//Constructor de Provincias INICIO
+
+// class Provincia{
+//     constructor(nombre, distancia, valorHotel, datoProvincia) {
+//     this.nombre= nombre;
+//     this.distancia=distancia;
+//     this.valorHotel= valorHotel;
+//     this.datoProvincia= () =>{console.log(datoProvincia)};
+//     this.disponibilidad= 5;
+//     }
+
+//     ocupar() {
+//         this.disponibilidad -= 1;
+//         if (this.disponibilidad === 0){
+//             alert("Ups, ya no tenemos lugar para esa provincia");
+//         }
+//     }
+// }
+
+//Array de provincias disponibles 
+provincias= [
+    { nombre: "Cordoba", distancia: 800 , valorHotel: 1500 , datoProvincia: "En Cordoba podes visitar Tras La Sierra, zona de montes y rios ideal para disfrutar en verano." },
+    { nombre: "Santa Fe", distancia: 500 , valorHotel: 1000 , datoProvincia: "En Santa Fe capital, se encuentra el rio Parana. Tomate un Amargo Obrero en la ribera." },
+    { nombre: "Chubut", distancia: 900 , valorHotel: 2500 , datoProvincia: "Si visitas la provincia de Chubut entre los meses de septiembre a diciembre, podras ver ballenas francas australes nadando por las costas de Puerto Madryn."  },
+    { nombre: "Rio Negro", distancia: 1000 , valorHotel:3000 , datoProvincia: "Rio Negro, una de las provincias con mas atractivos turisticos de la Patagonica. Algunos destinos imperdibles son: Bariloche, San Martin de los Andes, Villa La Angostura y muchos mas. " },
+    
+]
+
+//Funciones necesarias para la calculadora
+
 function traslado (kilometros, valor) {
     let valorKilometro = kilometros * valor;
     return valorKilometro;
@@ -26,27 +57,38 @@ function destinoPosible (presupuesto, costoTotal) {
 }
 
 function opcionesDestino() {
-    let opciones = prompt("Un gusto saludarte, "+nombre+". Por favor, elegi alguno de los siguientes destinos.(ESC para salir)\n 1.Cordoba\n 2. Santa Fe\n 3.Chubut\n 4.Rio Negro");
+    let opciones = prompt("Un gusto saludarte, "+nombre+". Por favor, ingresa a que provincia te gustaria ir. Si queres salir, ingresa ESC");
+    console.log(opciones)
     return opciones;
-    
 }
 
+function buscadorDestino(destino) {
+    const  provinciaEncontrada = provincias.find( (provincia) => provincia.nombre.toLowerCase === destino.toLowerCase );
+    console.log(provinciaEncontrada)
+    return provinciaEncontrada
+}
+
+//Funcion Calculadora
+
+
 function calculadora() {
-    let destinoSeleccionado=opcionesDestino();
+    let destinoSeleccionado=buscadorDestino(opcionesDestino());
+    console.log(destinoSeleccionado['valorHotel']);
+    console.log(destinoSeleccionado['distancia']);
     while (destinoSeleccionado !== "ESC") {
         if (destinoSeleccionado !=="") {
             let presupuesto = parseFloat(prompt("Hermoso destino. Para continuar, contanos tu presupuesto estimado."));
             let dias= parseFloat(prompt("Por ultimo: Cuantos dias te gustaria hospedarte?")); 
             const valorKilometro = 50;
-            destinoSeleccionado = parseInt(destinoSeleccionado);
+            //destinoSeleccionado = parseInt(destinoSeleccionado);
             
             if (!isNaN(destinoSeleccionado)){
 
                 switch(destinoSeleccionado){
 
                     case 1:
-                        let costoHotelCordoba= 1500;
-                        let costoTrasladoCordoba = traslado (800,valorKilometro);
+                        let costoHotelCordoba= destinoSeleccionado['valorHotel'];
+                        let costoTrasladoCordoba = traslado (destinoSeleccionado['distancia'],valorKilometro);
                         let costoHospedajeCordoba = hospedaje (dias, costoHotelCordoba );
                         costoViaje = costoViaje(costoTrasladoCordoba, costoHospedajeCordoba);
                         destinoPosible(presupuesto, costoViaje);
