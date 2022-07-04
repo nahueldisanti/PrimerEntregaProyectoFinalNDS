@@ -56,6 +56,10 @@ function destinoPosible (presupuesto, costoTotal) {
     }
 }
 
+function verDato (){
+
+}
+
 function opcionesDestino() {
     let opciones = prompt("Un gusto saludarte, "+nombre+". Por favor, ingresa a que provincia te gustaria ir. Si queres salir, ingresa ESC");
     console.log(opciones)
@@ -80,19 +84,15 @@ function calculadora() {
             let presupuesto = parseFloat(prompt("Hermoso destino. Para continuar, contanos tu presupuesto estimado."));
             let dias= parseFloat(prompt("Por ultimo: Cuantos dias te gustaria hospedarte?")); 
             const valorKilometro = 50;
-            //destinoSeleccionado = parseInt(destinoSeleccionado);
-            
-            if (!isNaN(destinoSeleccionado)){
-                let costoHotel= destinoSeleccionado['valorHotel'];
-                let costoTraslado = traslado (destinoSeleccionado['distancia'],valorKilometro);
-                let costoHospedaje = hospedaje (dias, costoHotel);
-                costoViaje = costoViaje(costoTraslado, costoHospedaje);
-                console.log(costoViaje);
-                destinoPosible(presupuesto, costoViaje);
-                console.log(destinoPosible)
-                break;
-                
-            }
+            let costoHotel= destinoSeleccionado['valorHotel'];
+            let costoTraslado = traslado (destinoSeleccionado['distancia'],valorKilometro);
+            let costoHospedaje = hospedaje (dias, costoHotel);
+            costoViaje = costoViaje(costoTraslado, costoHospedaje);
+            console.log(costoViaje);
+            destinoPosible(presupuesto, costoViaje);
+            console.log(destinoPosible);
+            verDato(); 
+            break;
         } else {
             alert("Elige un destino por favor");
         }
